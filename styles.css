@@ -1,0 +1,276 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0a0e27 0%, #1a1535 50%, #0f0d1e 100%);
+    color: #fff;
+    overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
+}
+
+.stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: #fff;
+    border-radius: 50%;
+    animation: twinkle 3s infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+.airplane {
+    position: absolute;
+    font-size: 30px;
+    opacity: 0.15;
+    animation: fly 25s linear infinite;
+}
+
+@keyframes fly {
+    0% {
+        left: -50px;
+        top: 20%;
+    }
+    100% {
+        left: 110%;
+        top: 30%;
+    }
+}
+
+.container {
+    position: relative;
+    z-index: 10;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 60px;
+    animation: fadeInDown 1s ease;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.header h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    background: linear-gradient(135deg, #00f5ff, #a855f7, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 15px;
+    text-shadow: 0 0 30px rgba(0, 245, 255, 0.3);
+}
+
+.header p {
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    color: #94a3b8;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+.countdown-card {
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(0, 245, 255, 0.2);
+    border-radius: 30px;
+    padding: clamp(40px, 8vw, 80px) clamp(30px, 6vw, 60px);
+    box-shadow: 0 20px 60px rgba(0, 245, 255, 0.15),
+                0 0 100px rgba(168, 85, 247, 0.1),
+                inset 0 0 50px rgba(0, 245, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+    animation: fadeInScale 1.2s ease;
+    max-width: 900px;
+    width: 100%;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.countdown-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #00f5ff, #a855f7, #ec4899, #00f5ff);
+    border-radius: 30px;
+    z-index: -1;
+    opacity: 0;
+    animation: borderGlow 3s ease-in-out infinite;
+    background-size: 300% 300%;
+}
+
+@keyframes borderGlow {
+    0%, 100% {
+        opacity: 0.3;
+        background-position: 0% 50%;
+    }
+    50% {
+        opacity: 0.6;
+        background-position: 100% 50%;
+    }
+}
+
+.countdown-display {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: clamp(20px, 4vw, 40px);
+    margin-bottom: 40px;
+}
+
+.time-unit {
+    text-align: center;
+    padding: 20px;
+    background: rgba(0, 245, 255, 0.05);
+    border-radius: 20px;
+    border: 1px solid rgba(0, 245, 255, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.time-unit:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 245, 255, 0.3);
+    border-color: rgba(0, 245, 255, 0.5);
+}
+
+.time-value {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 700;
+    background: linear-gradient(135deg, #00f5ff, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block;
+    margin-bottom: 10px;
+    text-shadow: 0 0 20px rgba(0, 245, 255, 0.5);
+}
+
+.time-label {
+    font-size: clamp(0.8rem, 2vw, 1rem);
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 500;
+}
+
+.message {
+    text-align: center;
+    margin-top: 40px;
+    padding: 30px;
+    background: linear-gradient(135deg, rgba(0, 245, 255, 0.1), rgba(168, 85, 247, 0.1));
+    border-radius: 20px;
+    border: 1px solid rgba(168, 85, 247, 0.3);
+}
+
+.message h2 {
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, #ec4899, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.message p {
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+    color: #cbd5e1;
+    line-height: 1.8;
+}
+
+.destination {
+    margin-top: 30px;
+    text-align: center;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    color: #00f5ff;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.7;
+        text-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
+    }
+    50% {
+        opacity: 1;
+        text-shadow: 0 0 20px rgba(0, 245, 255, 0.8);
+    }
+}
+
+.world-map {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    opacity: 0.03;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500"><path fill="%2300f5ff" d="M100,200 Q150,180 200,200 T300,200 Q350,220 400,200 T500,200 Q550,180 600,200 T700,200 Q750,220 800,200 T900,200"/></svg>');
+    background-repeat: repeat-x;
+    background-position: bottom;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .countdown-display {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .countdown-card {
+        padding: 30px 20px;
+    }
+}
+
+.loading {
+    font-size: 1.2rem;
+    color: #00f5ff;
+    animation: pulse 1.5s ease-in-out infinite;
+}
