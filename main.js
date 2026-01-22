@@ -11,7 +11,8 @@ for (let i = 0; i < 100; i++) {
 
 // Countdown functionality
 function updateCountdown() {
-    const targetDate = new Date('2026-01-10T00:00:00');
+    //Edit date if want
+    const targetDate = new Date('2026-02-08T00:00:00');
     const now = new Date();
     const difference = targetDate - now;
 
